@@ -24,6 +24,13 @@ public class Day01 {
                 })
                 .toArray();
 
+        System.out.println(part1(ints));
+        System.out.println(part2_stupid(ints));
+
+        System.out.println("---");
+    }
+
+    private static int part1(int[] ints) {
         int count = 0;
         int value = 50;
 
@@ -50,10 +57,42 @@ public class Day01 {
                 count++;
             }
         }
+        return count;
+    }
 
+    private static int part2_stupid(int[] ints) {
+        int count = 0;
+        int value = 50;
 
-        System.out.println(count);
-        System.out.println("---");
+        for (int i : ints) {
+            if (i < 0) {
+                while (i++ != 0) {
+                    value--;
+
+                    if (value == -1) {
+                        value = 99;
+                    }
+
+                    if (value == 0) {
+                        count++;
+                    }
+                }
+            } else if (i > 0) {
+                while (i-- != 0) {
+                    value++;
+
+                    if (value == 100) {
+                        value = 0;
+                    }
+
+                    if (value == 0) {
+                        count++;
+                    }
+                }
+            }
+        }
+
+        return count;
     }
 
     private static int getMultiplier(String direction) {
